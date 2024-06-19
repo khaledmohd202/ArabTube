@@ -1,7 +1,8 @@
-import 'package:arabtube/config/routes/routes.dart';
-import 'package:arabtube/core/utils/assets/app_icons.dart';
-import 'package:arabtube/core/utils/colors/app_colors.dart';
-import 'package:arabtube/core/utils/strings/app_strings.dart';
+import 'package:arabtube/core/utils/const/constants.dart';
+
+import '../../../../core/utils/assets/app_icons.dart';
+import '../../../../core/utils/colors/app_colors.dart';
+import '../../../../core/utils/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(const Duration(seconds: 2)).then(
       (_) => Navigator.pushReplacementNamed(
         context,
-        Routes.onboardingRoute,
+        Constants.onboardingRoute,
       ),
     );
   }

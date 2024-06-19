@@ -1,4 +1,4 @@
-import 'package:arabtube/core/utils/assets/app_icons.dart';
+import '../../../../core/utils/assets/app_icons.dart';
 
 class OnboardingModel {
   final String title;

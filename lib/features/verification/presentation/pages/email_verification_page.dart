@@ -1,7 +1,8 @@
-import 'package:arabtube/config/routes/routes.dart';
-import 'package:arabtube/core/utils/assets/app_icons.dart';
-import 'package:arabtube/core/utils/colors/app_colors.dart';
-import 'package:arabtube/features/onboarding/presentation/widgets/custom_text_button.dart';
+import 'package:arabtube/core/utils/const/constants.dart';
+
+import '../../../../core/utils/assets/app_icons.dart';
+import '../../../../core/utils/colors/app_colors.dart';
+import '../../../onboarding/presentation/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -192,7 +193,7 @@ class EmailVerificationPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
-                      Routes.verificationCompletedRoute,
+                      Constants.verificationCompletedRoute,
                     );
                   },
                   backgroundColor: AppColors.buttonColor,

@@ -1,7 +1,8 @@
-import 'package:arabtube/config/routes/routes.dart';
-import 'package:arabtube/core/utils/colors/app_colors.dart';
-import 'package:arabtube/core/utils/strings/app_strings.dart';
-import 'package:arabtube/features/onboarding/data/models/onboarding_model.dart';
+import 'package:arabtube/core/utils/const/constants.dart';
+
+import '../../../../core/utils/colors/app_colors.dart';
+import '../../../../core/utils/strings/app_strings.dart';
+import '../../data/models/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -115,7 +116,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: ElevatedButton(
                 onPressed: () {
                   if (currentIndex == onboardingData.length - 1) {
-                    Navigator.pushNamed(context, Routes.loginRoute);
+                    Navigator.pushNamed(context, Constants.loginRoute);
                   } else {
                     _pageController.nextPage(
                       duration: const Duration(milliseconds: 300),

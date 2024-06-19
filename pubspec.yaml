@@ -9,15 +9,48 @@ environment:
   sdk: '>=3.4.0-282.1.beta <4.0.0'
 
 dependencies:
+  animated_bottom_navigation_bar: ^1.3.3
   cupertino_icons: ^1.0.6
+  dio: ^5.4.3+1
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
+  flutter_riverpod: ^2.5.1
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.10+1
+  miniplayer: ^1.0.1
   pinput: ^4.0.0
+  timeago: ^3.6.1
+  video_player: ^2.8.7
+
+flutter_native_splash:
+  color: "#11112E"
+  background_image: "assets/images/splash_ screen.png"
+  image: "assets/images/arabtube.png"
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/arabtube.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/images/arabtube.png"
+    background_color: "#11112E"
+    theme_color: "#11112E"
+  windows:
+    generate: true
+    image_path: "assets/images/arabtube.png"
+    # icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/arabtube.png"
 
 dev_dependencies:
-
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter

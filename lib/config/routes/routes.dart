@@ -1,40 +1,105 @@
-import 'package:arabtube/features/home/presentation/pages/home_page.dart';
-import 'package:arabtube/features/login/presentation/pages/login_page.dart';
-import 'package:arabtube/features/onboarding/presentation/pages/onboarding_page.dart';
-import 'package:arabtube/features/registration/presentation/pages/register_page.dart';
-import 'package:arabtube/features/reset_password/presentation/pages/forgot_password_page.dart';
-import 'package:arabtube/features/reset_password/presentation/pages/otp_verification_page.dart';
-import 'package:arabtube/features/reset_password/presentation/pages/password_changed_page.dart';
-import 'package:arabtube/features/reset_password/presentation/pages/reset_password_page.dart';
-import 'package:arabtube/features/splash/presentation/pages/splash_page.dart';
-import 'package:arabtube/features/verification/presentation/pages/email_verification_page.dart';
-import 'package:arabtube/features/verification/presentation/pages/verification_completed_page.dart';
+import 'package:arabtube/core/utils/const/constants.dart';
+import 'package:arabtube/features/home/data/repositories_impl/video_repo.dart';
+import 'package:arabtube/features/home/data/web_services/get_videos.dart';
+import 'package:arabtube/features/home/presentation/blocs/cubit/video_cubit.dart';
+import 'package:arabtube/features/more/presentation/pages/language_page.dart';
+import 'package:arabtube/features/more/presentation/pages/profile_page.dart';
+import 'package:arabtube/features/more/presentation/pages/settings_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/home/presentation/pages/navigation_page.dart';
+import '../../features/login/presentation/pages/login_page.dart';
+import '../../features/onboarding/presentation/pages/onboarding_page.dart';
+import '../../features/registration/presentation/pages/register_page.dart';
+import '../../features/reset_password/presentation/pages/forgot_password_page.dart';
+import '../../features/reset_password/presentation/pages/password_changed_page.dart';
+import '../../features/reset_password/presentation/pages/reset_password_page.dart';
+import '../../features/splash/presentation/pages/splash_page.dart';
+import '../../features/verification/presentation/pages/email_verification_page.dart';
+import '../../features/verification/presentation/pages/verification_completed_page.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
-  static const String initialRoute = '/SplashPage';
-  static const String onboardingRoute = '/OnboardingPage';
-  static const String loginRoute = '/LoginPage';
-  static const String registerRoute = '/RegisterPage';
-  static const String emailVerificationRoute = '/EmailVerificationPage';
-  static const String verificationCompletedRoute = '/VerificationCompletedPage';
-  static const String homeRoute = '/HomePage';
-  static const String forgotPasswordRoute = '/ForgotPasswordPage';
-  static const String resetPasswordRoute = '/ResetPasswordPage';
-  static const String changePasswordRoute = '/PasswordChangedPage';
-  static const String otpVerificationRoute = '/OTPVerificationPage';
+  late VideoRepository videoRepository;
+  late VideoCubit videoCubit;
+  // late GetVideosWebService getVideosWebService;
+
+  Routes() {
+    videoRepository =
+        VideoRepository(getVideosWebService: GetVideosWebService());
+    videoCubit = VideoCubit(videoRepository);
+  }
+
+  Route? onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case Constants.initialRoute:
+        return MaterialPageRoute(
+          builder: (_) => const SplashPage(),
+        );
+      case Constants.onboardingRoute:
+        return MaterialPageRoute(
+          builder: (_) => const OnboardingPage(),
+        );
+      case Constants.loginRoute:
+        return MaterialPageRoute(
+          builder: (_) => const LoginPage(),
+        );
+      case Constants.registerRoute:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterPage(),
+        );
+      case Constants.forgotPasswordRoute:
+        return MaterialPageRoute(
+          builder: (_) => ForgotPasswordPage(),
+        );
+      case Constants.resetPasswordRoute:
+        return MaterialPageRoute(
+          builder: (_) => ResetPasswordPage(),
+        );
+      case Constants.changePasswordRoute:
+        return MaterialPageRoute(
+          builder: (_) => const PasswordChangedPage(),
+        );
+      case Constants.emailVerificationRoute:
+        return MaterialPageRoute(
+          builder: (_) => EmailVerificationPage(),
+        );
+      case Constants.verificationCompletedRoute:
+        return MaterialPageRoute(
+          builder: (_) => const VerificationCompletedPage(),
+        );
+      case Constants.homeRoute:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => VideoCubit(videoRepository),
+            child: const HomePage(),
+          ),
+        );
+      case Constants.navigationRoute:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => VideoCubit(videoRepository),
+            child: const NavigationPage(),
+          ),
+        );
+      case Constants.profileRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ProfilePage(),
+        );
+      case Constants.settingsRoute:
+        return MaterialPageRoute(
+          builder: (_) => const SettingsPage(),
+        );
+      case Constants.languageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const LanguagePage(),
+        );
+      default:
+        return MaterialPageRoute(
+          builder: (_) => const SplashPage(),
+        );
+    }
+  }
 }
 
-final routes = <String, WidgetBuilder>{
-  Routes.initialRoute: (context) => const SplashPage(),
-  Routes.onboardingRoute: (context) => const OnboardingPage(),
-  Routes.loginRoute: (context) => const LoginPage(),
-  Routes.registerRoute: (context) => const RegisterPage(),
-  Routes.emailVerificationRoute: (context) => EmailVerificationPage(),
-  Routes.verificationCompletedRoute: (context) => const VerificationCompletedPage(),
-  Routes.homeRoute: (context) => const HomePage(),
-  Routes.forgotPasswordRoute: (context) =>  ForgotPasswordPage(),
-  Routes.resetPasswordRoute: (context) =>  ResetPasswordPage(),
-  Routes.changePasswordRoute: (context) => const PasswordChangedPage(),
-  Routes.otpVerificationRoute: (context) =>  OTPVerificationPage(),
-};
+// final routes = {};

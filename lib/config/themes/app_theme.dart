@@ -1,4 +1,4 @@
-import 'package:arabtube/core/utils/colors/app_colors.dart';
+import '../../core/utils/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData appTheme(){

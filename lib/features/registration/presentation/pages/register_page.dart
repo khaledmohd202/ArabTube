@@ -1,10 +1,11 @@
-import 'package:arabtube/config/routes/routes.dart';
-import 'package:arabtube/core/utils/assets/app_icons.dart';
-import 'package:arabtube/core/utils/colors/app_colors.dart';
-import 'package:arabtube/features/login/presentation/widgets/custom_text_form_field.dart';
-import 'package:arabtube/features/onboarding/presentation/widgets/custom_text_button.dart';
-import 'package:arabtube/features/registration/presentation/widgets/custom_drop_down.dart';
-import 'package:arabtube/features/registration/presentation/widgets/custom_picker.dart';
+import 'package:arabtube/core/utils/const/constants.dart';
+
+import '../../../../core/utils/assets/app_icons.dart';
+import '../../../../core/utils/colors/app_colors.dart';
+import '../../../login/presentation/widgets/custom_text_form_field.dart';
+import '../../../onboarding/presentation/widgets/custom_text_button.dart';
+import '../widgets/custom_drop_down.dart';
+import '../widgets/custom_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -209,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 CustomTextButton(
                   text: 'Next',
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.emailVerificationRoute);
+                    Navigator.pushNamed(context, Constants.emailVerificationRoute);
 
                   },
                   foregroundColor: AppColors.whiteColor,

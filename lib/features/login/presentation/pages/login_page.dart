@@ -1,8 +1,9 @@
-import 'package:arabtube/config/routes/routes.dart';
-import 'package:arabtube/core/utils/assets/app_icons.dart';
-import 'package:arabtube/core/utils/colors/app_colors.dart';
-import 'package:arabtube/features/login/presentation/widgets/custom_text_form_field.dart';
-import 'package:arabtube/features/onboarding/presentation/widgets/custom_text_button.dart';
+import 'package:arabtube/core/utils/const/constants.dart';
+
+import '../../../../core/utils/assets/app_icons.dart';
+import '../../../../core/utils/colors/app_colors.dart';
+import '../widgets/custom_text_form_field.dart';
+import '../../../onboarding/presentation/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(
-                              context, Routes.forgotPasswordRoute);
+                              context, Constants.forgotPasswordRoute);
                         },
                         child: Text(
                           'Forgot Password?',
@@ -123,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                 CustomTextButton(
                   text: 'Login',
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.homeRoute);
+                    Navigator.pushNamed(context, Constants.navigationRoute);
                   },
                   foregroundColor: AppColors.whiteColor,
                   backgroundColor: AppColors.buttonColor,
@@ -142,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                     TextButton(
                       onPressed: () {
                         // modalBottomSheet(context);
-                        Navigator.pushNamed(context, Routes.registerRoute);
+                        Navigator.pushNamed(context, Constants.registerRoute);
                       },
                       child: Text(
                         'Sign Up',

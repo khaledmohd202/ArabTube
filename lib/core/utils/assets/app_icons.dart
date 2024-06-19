@@ -15,7 +15,14 @@ class AppIcons {
   static const String twitterIcon = '$_iconPath/twitter.svg';
   static const String personIcon = '$_iconPath/person.svg';
   static const String otpIcon = '$_iconPath/OTP-1.svg';
-  static const String successfulVerificationIcon = '$_iconPath/successful_verification.svg';
+  static const String successfulVerificationIcon =
+      '$_iconPath/successful_verification.svg';
   static const String forgotPasswordIcon = '$_iconPath/forgot_password.svg';
   static const String passwordChangedIcon = '$_iconPath/password_changed.svg';
+  static const String homeIcon = '$_iconPath/home.svg';
+  static const String channelsIcon = '$_iconPath/channels.svg';
+  static const String shortsIcon = '$_iconPath/shorts.svg';
+  static const String moreIcon = '$_iconPath/more.svg';
+  static const String notificationIcon = '$_iconPath/notification.svg';
+  static const String addingIcon = '$_iconPath/add_icon.svg';
 }
