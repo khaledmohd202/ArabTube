@@ -1,4 +1,4 @@
-class Video {
+class VideoModel {
   String? id;
   String? title;
   int? likes;
@@ -9,21 +9,10 @@ class Video {
   String? username;
   String? createdOn;
   String? thumbnail;
+  String? profilePic;
 
-  Video({
-    this.id,
-    this.title,
-    this.likes,
-    this.disLikes,
-    this.views,
-    this.channelTitle,
-    this.userId,
-    this.username,
-    this.createdOn,
-    this.thumbnail,
-  });
 
-  Video.fromJson(Map<String, dynamic> json) {
+  VideoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     likes = json['likes'];
@@ -34,20 +23,7 @@ class Video {
     username = json['username'];
     createdOn = json['createdOn'];
     thumbnail = json['thumbnail'];
+    profilePic = json['profilePic'];
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = Map<String, dynamic>();
-  //   data['id'] = this.id;
-  //   data['title'] = this.title;
-  //   data['likes'] = this.likes;
-  //   data['disLikes'] = this.disLikes;
-  //   data['views'] = this.views;
-  //   data['channelTitle'] = this.channelTitle;
-  //   data['userId'] = this.userId;
-  //   data['username'] = this.username;
-  //   data['createdOn'] = this.createdOn;
-  //   data['thumbnail'] = this.thumbnail;
-  //   return data;
-  // }
 }

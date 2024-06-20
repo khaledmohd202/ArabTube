@@ -1,6 +1,7 @@
+
 import '../../../../core/utils/assets/app_icons.dart';
 import '../../../../core/utils/colors/app_colors.dart';
-import '../../../channels/presentation/pages/channels_page.dart';
+import '../../../channels/presentation/views/channel_view.dart';
 import 'home_page.dart';
 import '../../../shorts/presentation/pages/shorts_page.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,9 @@ class _NavigationPageState extends State<NavigationPage> {
   ];
   final screens = [
     const HomePage(),
-    const ChannelsPage(),
+    const ChannelsView(),
      ShortsPage(),
+    const SizedBox(),
   ];
   final title = [
     'Home',

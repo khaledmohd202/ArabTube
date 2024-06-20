@@ -24,7 +24,14 @@ dependencies:
   miniplayer: ^1.0.1
   pinput: ^4.0.0
   timeago: ^3.6.1
-  video_player: ^2.8.7
+  chewie: ^1.2.2
+  dartz: ^0.10.1
+  get_it: ^7.6.0
+  shared_preferences: ^2.0.15
+  video_player: ^2.1.12
+  cached_network_image: ^3.3.0
+  internet_connection_checker: ^1.0.0+1
+  shimmer: ^3.0.0
   zego_uikit_prebuilt_live_streaming: ^3.8.4
 
 flutter_native_splash:
@@ -64,7 +71,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/fonts/
     - .env
   # fonts:
   #   - family: Schyler

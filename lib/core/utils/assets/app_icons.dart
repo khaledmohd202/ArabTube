@@ -25,4 +25,9 @@ class AppIcons {
   static const String moreIcon = '$_iconPath/more.svg';
   static const String notificationIcon = '$_iconPath/notification.svg';
   static const String addingIcon = '$_iconPath/add_icon.svg';
+  static const String play = '$_iconPath/play.svg';
+  static const String menu = '$_iconPath/menu.svg';
+  static const String search = '$_iconPath/search.svg';
+  static const String noData = '$_iconPath/no_data.svg';
+  static const String back = '$_iconPath/back.svg';
 }

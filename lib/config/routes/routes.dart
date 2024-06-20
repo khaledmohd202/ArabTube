@@ -1,13 +1,9 @@
 import 'package:arabtube/core/utils/const/constants.dart';
-import 'package:arabtube/features/home/data/repositories_impl/video_repo.dart';
-import 'package:arabtube/features/home/data/web_services/get_videos.dart';
-import 'package:arabtube/features/home/presentation/blocs/cubit/video_cubit.dart';
 import 'package:arabtube/features/live_stream/presentation/pages/live_stream_page.dart';
 import 'package:arabtube/features/more/presentation/pages/language_page.dart';
 import 'package:arabtube/features/more/presentation/pages/profile_page.dart';
 import 'package:arabtube/features/more/presentation/pages/settings_page.dart';
 import 'package:arabtube/features/shorts/presentation/pages/shorts_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/home/presentation/pages/navigation_page.dart';
 import '../../features/login/presentation/pages/login_page.dart';
@@ -22,15 +18,15 @@ import '../../features/verification/presentation/pages/verification_completed_pa
 import 'package:flutter/material.dart';
 
 class Routes {
-  late VideoRepository videoRepository;
-  late VideoCubit videoCubit;
-  // late GetVideosWebService getVideosWebService;
-
-  Routes() {
-    videoRepository =
-        VideoRepository(getVideosWebService: GetVideosWebService());
-    videoCubit = VideoCubit(videoRepository);
-  }
+  // late VideoRepository videoRepository;
+  // late VideoCubit videoCubit;
+  // // late GetVideosWebService getVideosWebService;
+  //
+  // Routes() {
+  //   videoRepository =
+  //       VideoRepository(getVideosWebService: GetVideosWebService());
+  //   videoCubit = VideoCubit(videoRepository);
+  // }
 
   Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -72,17 +68,11 @@ class Routes {
         );
       case Constants.homeRoute:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => VideoCubit(videoRepository),
-            child: const HomePage(),
-          ),
+          builder: (_) => const HomePage(),
         );
       case Constants.navigationRoute:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => VideoCubit(videoRepository),
-            child: const NavigationPage(),
-          ),
+          builder: (_) => const NavigationPage(),
         );
       case Constants.profileRoute:
         return MaterialPageRoute(
