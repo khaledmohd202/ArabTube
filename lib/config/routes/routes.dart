@@ -2,9 +2,11 @@ import 'package:arabtube/core/utils/const/constants.dart';
 import 'package:arabtube/features/home/data/repositories_impl/video_repo.dart';
 import 'package:arabtube/features/home/data/web_services/get_videos.dart';
 import 'package:arabtube/features/home/presentation/blocs/cubit/video_cubit.dart';
+import 'package:arabtube/features/live_stream/presentation/pages/live_stream_page.dart';
 import 'package:arabtube/features/more/presentation/pages/language_page.dart';
 import 'package:arabtube/features/more/presentation/pages/profile_page.dart';
 import 'package:arabtube/features/more/presentation/pages/settings_page.dart';
+import 'package:arabtube/features/shorts/presentation/pages/shorts_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/home/presentation/pages/navigation_page.dart';
@@ -93,6 +95,17 @@ class Routes {
       case Constants.languageRoute:
         return MaterialPageRoute(
           builder: (_) => const LanguagePage(),
+        );
+      case Constants.shortsRoute:
+        return MaterialPageRoute(
+          builder: (_) =>  ShortsPage(),
+        );
+      case Constants.liveStreamRoute:
+        return MaterialPageRoute(
+          builder: (_) =>  LiveStreamPage(
+            liveID: '123456',
+            isHost: true,
+          ),
         );
       default:
         return MaterialPageRoute(

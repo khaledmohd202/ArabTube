@@ -1,5 +1,6 @@
 import 'package:arabtube/core/utils/assets/app_images.dart';
 import 'package:arabtube/core/utils/const/constants.dart';
+import 'package:arabtube/features/live_stream/presentation/pages/live_stream_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,17 @@ class CustomSliverAppBar extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.cast),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LiveStreamPage(
+                  liveID: '123456',
+                  isHost: true,
+                ),
+              ),
+            );
+          },
         ),
         IconButton(
           icon: const Icon(Icons.notifications_outlined),

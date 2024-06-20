@@ -15,6 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_dotenv: ^5.1.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
   flutter_riverpod: ^2.5.1
@@ -24,6 +25,7 @@ dependencies:
   pinput: ^4.0.0
   timeago: ^3.6.1
   video_player: ^2.8.7
+  zego_uikit_prebuilt_live_streaming: ^3.8.4
 
 flutter_native_splash:
   color: "#11112E"
@@ -63,6 +65,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/fonts/
+    - .env
   # fonts:
   #   - family: Schyler
   #     fonts:

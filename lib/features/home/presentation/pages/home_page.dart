@@ -2,7 +2,6 @@ import 'package:arabtube/core/utils/const/constants.dart';
 import 'package:arabtube/features/home/data/models/video.dart';
 import 'package:arabtube/features/home/presentation/blocs/cubit/video_cubit.dart';
 import 'package:arabtube/features/home/presentation/widgets/custom_sliver_appbar.dart';
-import 'package:arabtube/features/home/presentation/widgets/video_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/assets/app_icons.dart';
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage>
       initialIndex: 0,
     );
     super.initState();
-    allVideos = BlocProvider.of<VideoCubit>(context).getAllVideos();
+    BlocProvider.of<VideoCubit>(context).getAllVideos();
   }
 
   Widget buildBlocWidget() {
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage>
         allVideos = (state).videos;
         return buildLoadedListVideos();
       } else if (state is VideoLoading) {
-        return shoLoadingIndicator();
+        return showLoadingIndicator();
       } else if (state is VideoError) {
         return Center(
           child: Text(state.message),
@@ -66,7 +65,7 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  Widget shoLoadingIndicator() {
+  Widget showLoadingIndicator() {
     return const Center(
       child: CircularProgressIndicator(),
     );

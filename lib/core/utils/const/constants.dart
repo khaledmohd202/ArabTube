@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Constants {
   static String baseUrl = 'https://arabtubedemo1.runasp.net/api';
   static const String initialRoute = '/SplashPage';
@@ -15,4 +17,7 @@ class Constants {
   static const String settingsRoute = '/SettingsPage';
   static const String profileRoute = '/ProfilePage';
   static const String languageRoute = '/LanguagePage';
+  static const String shortsRoute = '/ShortsPage';
+  static const String liveStreamRoute = '/LiveStreamPage';
+  static String userID = Random().nextInt(900000+100000).toString();
 }

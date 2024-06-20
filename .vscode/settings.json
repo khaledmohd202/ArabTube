@@ -2,8 +2,14 @@
     "cSpell.words": [
         "arabtube",
         "cupertino",
+        "dotenv",
+        "miniplayer",
         "Pinput",
-        "screenutil"
+        "riverpod",
+        "Schyler",
+        "screenutil",
+        "timeago",
+        "zego"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
 }
