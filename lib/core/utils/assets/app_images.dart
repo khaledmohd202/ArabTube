@@ -17,4 +17,5 @@ class AppImages {
   static String seventhHomeImage = '$_imagePath/7th-home-image.png';
   static String homeImage = '$_imagePath/Rectangle 964.png';
   static String arabtubeImage = '$_imagePath/arabtube_logo.png';
+  static String liveStreamImage = '$_imagePath/Live Streaming.png';
 }

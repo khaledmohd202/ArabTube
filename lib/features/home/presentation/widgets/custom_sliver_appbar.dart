@@ -24,20 +24,20 @@ class CustomSliverAppBar extends StatelessWidget {
         ),
       ),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.cast),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LiveStreamPage(
-                  liveID: '123456',
-                  isHost: true,
-                ),
-              ),
-            );
-          },
-        ),
+        // IconButton(
+        //   icon: const Icon(Icons.cast),
+        //   onPressed: () {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (context) => LiveStreamPage(
+        //           liveID: '123456',
+        //           isHost: true,
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
         IconButton(
           icon: const Icon(Icons.notifications_outlined),
           onPressed: () {},

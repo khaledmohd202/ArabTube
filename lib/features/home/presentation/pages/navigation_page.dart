@@ -1,3 +1,5 @@
+import 'package:arabtube/features/live_stream/presentation/pages/live_stream_page.dart';
+import 'package:arabtube/features/settings/presentation/pages/settings_page.dart';
 
 import '../../../../core/utils/assets/app_icons.dart';
 import '../../../../core/utils/colors/app_colors.dart';
@@ -21,20 +23,20 @@ class _NavigationPageState extends State<NavigationPage> {
     AppIcons.homeIcon,
     AppIcons.channelsIcon,
     AppIcons.shortsIcon,
-    AppIcons.moreIcon,
+    AppIcons.settingsIcon,
   ];
   final screens = [
     const HomePage(),
     const ChannelsView(),
-     ShortsPage(),
-    const SizedBox(),
+    LiveStreamPage(),
+    const SettingsPage(),
   ];
   final title = [
     'Home',
     'Channels',
     // 'ADD',
-    'Shorts',
-    'More',
+    'Live Stream',
+    'Settings',
   ];
   List<BottomNavigationBarItem> items = [];
   int index = 0;
@@ -43,21 +45,6 @@ class _NavigationPageState extends State<NavigationPage> {
     return Scaffold(
       extendBody: true,
       body: screens[pageIndex],
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     setState(() {});
-      //   },
-      //   backgroundColor: AppColors.buttonColor,
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.all(
-      //       Radius.circular(30.dg),
-      //     ),
-      //   ),
-      //   // mini: true,
-      //   child: Icon(Icons.add, color: AppColors.whiteColor, size: 35.sp),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(

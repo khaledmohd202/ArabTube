@@ -29,24 +29,25 @@ class _ChannelsViewBodyState extends State<ChannelsViewBody> {
     } else {
       result = Constants.subscribeModel
           .where((item) => item.channelTitle!
-          .toLowerCase()
-          .contains(enteredKeyword.toLowerCase()))
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     setState(() {
       Constants.foundedChannels = result;
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           Padding(
-            padding:
-            EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Row(
               children: [
                 ClipRRect(
@@ -59,25 +60,25 @@ class _ChannelsViewBodyState extends State<ChannelsViewBody> {
                       highlightColor: Colors.grey[200]!,
                       child: Container(
                         decoration: const BoxDecoration(
-                            color: Colors.grey, shape: BoxShape.circle ),
+                            color: Colors.grey, shape: BoxShape.circle),
                       ),
                     ),
                     errorWidget: (context, url, error) =>
-                    const Icon(Icons.error),
+                        const Icon(Icons.error),
                     imageUrl:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWr7tF8hS1xTA65YP22gtYCtnLOjVJi0yALjeXzYDtL0h7Mn43QCdnnWrfPpDWVofltT0&usqp=CAU",
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWr7tF8hS1xTA65YP22gtYCtnLOjVJi0yALjeXzYDtL0h7Mn43QCdnnWrfPpDWVofltT0&usqp=CAU",
                     fit: BoxFit.fill,
                     height: MediaQuery.of(context).size.height * 0.05,
-                    width:  MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.height * 0.05,
                   ),
                 ),
-                SizedBox(width: 10.w,),
+                SizedBox(
+                  width: 10.w,
+                ),
                 Expanded(
                   child: DefaultTextFormField(
                     textInputType: TextInputType.text,
-                    style: const TextStyle(
-                        color: Colors.white
-                    ),
+                    style: const TextStyle(color: Colors.white),
                     borderSideEnabledColor: Colors.white,
                     hintText: "Search",
                     hasBorder: true,
@@ -96,70 +97,93 @@ class _ChannelsViewBodyState extends State<ChannelsViewBody> {
                     ),
                   ),
                 ),
-                SizedBox(width: 10.w,),
+                SizedBox(
+                  width: 10.w,
+                ),
                 InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationView()));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationView()));
                   },
                   child: CircleAvatar(
-                    radius: MediaQuery.of(context).size.height*.025,
+                    radius: MediaQuery.of(context).size.height * .025,
                     backgroundColor: Colors.white,
-                    child: SvgPicture.asset(AppIcons.notificationIcon,width: MediaQuery.of(context).size.height*.025,),
+                    child: SvgPicture.asset(
+                      AppIcons.notificationIcon,
+                      width: MediaQuery.of(context).size.height * .025,
+                    ),
                   ),
                 )
               ],
             ),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           BlocBuilder<GetAllChannelsCubit, GetAllChannelsState>(
               builder: (context, state) {
-                if (state is UserGetAllChannelsSuccessState) {
-                  return Expanded(
-                    child:Constants.foundedChannels.isNotEmpty? ListView.separated(
-                      itemCount: Constants.foundedChannels.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ChannelItem(
-                          instance: Constants.foundedChannels[index],
-                        );
-                      }, separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(height: 20.h,);
-                    },
-                    ):Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(AppIcons.noData,width: MediaQuery.of(context).size.height*.15,),
-                          ],
-                        ),
-                        SizedBox(height: 5.h,),
-                        Text("No Result Found",style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: MediaQuery.of(context).size.height*.018,
-                          color: const Color(0xffA5A5A5),
-                        ),)
-                      ],
-                    ),
-                  );
-                } else {
-                  return Expanded(
-                      child: Padding(
-                          padding:
-                          EdgeInsets.symmetric(horizontal: 20.w),
-                          child: const Column(
+            if (state is UserGetAllChannelsSuccessState) {
+              return Expanded(
+                child: Constants.foundedChannels.isNotEmpty
+                    ? ListView.separated(
+                        itemCount: Constants.foundedChannels.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ChannelItem(
+                            instance: Constants.foundedChannels[index],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            height: 20.h,
+                          );
+                        },
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CircularProgressIndicator(
-                                color: Color(0xffFF0000),
+                              SvgPicture.asset(
+                                AppIcons.noData,
+                                width: MediaQuery.of(context).size.height * .15,
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Text(
+                            "No Result Found",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * .018,
+                              color: const Color(0xffA5A5A5),
+                            ),
                           )
-                      )
-                  );
-                }
-              }),
-          SizedBox(height: 20.h,),
+                        ],
+                      ),
+              );
+            } else {
+              return Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            color: Color(0xffFF0000),
+                          ),
+                        ],
+                      )));
+            }
+          }),
+          SizedBox(
+            height: 20.h,
+          ),
         ],
       ),
     );

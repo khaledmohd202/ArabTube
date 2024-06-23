@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "arabtube",
+        "Chewie",
         "cupertino",
         "dotenv",
         "miniplayer",
@@ -9,7 +10,8 @@
         "Schyler",
         "screenutil",
         "timeago",
+        "uikit",
         "zego"
     ],
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

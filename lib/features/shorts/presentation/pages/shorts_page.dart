@@ -13,54 +13,46 @@ class ShortsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: videoUrls.length,
-        itemBuilder: (context, index) {
-          return VideoPlayerWidget(url: videoUrls[index]);
-        },
-      ),
-    );
+    return const Scaffold();
   }
 }
 
-class VideoPlayerWidget extends StatefulWidget {
-  final String url;
+// class VideoPlayerWidget extends StatefulWidget {
+//   final String url;
 
-  VideoPlayerWidget({required this.url});
+//   VideoPlayerWidget({required this.url});
 
-  @override
-  _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
-}
+//   @override
+//   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
+// }
 
-class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  late VideoPlayerController _controller;
+// class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
+//   late VideoPlayerController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.network(widget.url)
-      ..initialize().then((_) {
-        setState(() {});
-        _controller.play();
-        _controller.setLooping(true);
-      });
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = VideoPlayerController.network(widget.url)
+//       ..initialize().then((_) {
+//         setState(() {});
+//         _controller.play();
+//         _controller.setLooping(true);
+//       });
+//   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return _controller.value.isInitialized
-        ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
-          )
-        : Center(child: CircularProgressIndicator());
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return _controller.value.isInitialized
+//         ? AspectRatio(
+//             aspectRatio: _controller.value.aspectRatio,
+//             child: VideoPlayer(_controller),
+//           )
+//         : Center(child: CircularProgressIndicator());
+//   }
+// }

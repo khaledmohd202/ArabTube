@@ -14,26 +14,26 @@ class SettingsPage extends StatelessWidget {
         title: Text(
           'Settings',
           style: TextStyle(
-            color: AppColors.whiteColor,
-            fontSize: 23.0.sp,
+            color: AppColors.buttonColor,
+            fontSize: 24.0.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 8.0.w),
-          child: BackButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            color: AppColors.whiteColor,
-            style: ButtonStyle(
-              overlayColor: WidgetStateProperty.all(AppColors.buttonColor),
-              iconSize: WidgetStateProperty.all(30.0.sp),
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.only(left: 8.0.w),
+        //   child: BackButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     color: AppColors.whiteColor,
+        //     style: ButtonStyle(
+        //       overlayColor: WidgetStateProperty.all(AppColors.buttonColor),
+        //       iconSize: WidgetStateProperty.all(30.0.sp),
+        //     ),
+        //   ),
+        // ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -41,13 +41,13 @@ class SettingsPage extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Divider(
-                  color: AppColors.whiteColor.withOpacity(0.5),
-                  thickness: 1.0.sign,
-                  endIndent: 8.dg,
-                  indent: 8.dg,
-                  height: 10,
-                ),
+                // Divider(
+                //   color: AppColors.whiteColor.withOpacity(0.5),
+                //   thickness: 1.0.sign,
+                //   endIndent: 8.dg,
+                //   indent: 8.dg,
+                //   height: 10,
+                // ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 CustomListTile(
                   title: 'Profile',
@@ -66,18 +66,24 @@ class SettingsPage extends StatelessWidget {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 CustomListTile(
-                  title: 'Notifications',
-                  icon: Icons.notifications,
+                  title: 'History',
+                  icon: Icons.history,
                   onTap: () {
-                    // Navigator.pushNamed(context, Constants.notificationRoute);
+                    Navigator.pushNamed(
+                      context,
+                      Constants.historyRoute,
+                    );
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 CustomListTile(
-                  title: 'Privacy',
-                  icon: Icons.privacy_tip,
+                  title: 'Watched Later',
+                  icon: Icons.watch_later_outlined,
                   onTap: () {
-                    // Navigator.pushNamed(context, Constants.privacyRoute);
+                    Navigator.pushNamed(
+                      context,
+                      Constants.watchedLaterRoute,
+                    );
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -85,7 +91,9 @@ class SettingsPage extends StatelessWidget {
                   title: 'Terms & Conditions',
                   icon: Icons.rule,
                   onTap: () {
-                    // Navigator.pushNamed(context, Constants.termsRoute);
+                    // showDialog(context: context, builder: (context){
+                    //   return
+                    // });
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -101,7 +109,7 @@ class SettingsPage extends StatelessWidget {
                   title: 'Logout',
                   icon: Icons.logout,
                   onTap: () {
-                    // Navigator.pushNamed(context, Constants.logoutRoute);
+                    Navigator.pop(context);
                   },
                 ),
               ],

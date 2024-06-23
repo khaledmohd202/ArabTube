@@ -15,41 +15,41 @@ import 'core/utils/services/remote/service_locator.dart';
 import 'features/home/data/repos/home_repo_impl.dart';
 import 'features/home/presentation/view_models/get_all_videos/get_all_videos_cubit.dart';
 
-Future main() async{
+Future main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   setup();
   await CacheHelper.init();
-  runApp(MyApp(routes: Routes()));
+  runApp(ArabTubeApp(routes: Routes()));
 }
 
-class MyApp extends StatelessWidget {
+class ArabTubeApp extends StatelessWidget {
   final Routes routes;
-  const MyApp({super.key, required this.routes});
+  const ArabTubeApp({super.key, required this.routes});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-     providers: [
-       BlocProvider(
-           create: (context) => GetAllVideosCubit(
-             getIt.get<HomeRepoImpl>(),
-           )..getAllVideos()),
-       BlocProvider(
-           create: (context) => GetNotificationsCubit(
-             getIt.get<NotificationRepoImpl>(),
-           )..getNotifications()),
-       BlocProvider(
-           create: (context) => GetAllChannelsCubit(
-             getIt.get<ChannelRepoImpl>(),
-           )..getAllChannels()),
-     ],
+      providers: [
+        BlocProvider(
+            create: (context) => GetAllVideosCubit(
+                  getIt.get<HomeRepoImpl>(),
+                )..getAllVideos()),
+        BlocProvider(
+            create: (context) => GetNotificationsCubit(
+                  getIt.get<NotificationRepoImpl>(),
+                )..getNotifications()),
+        BlocProvider(
+            create: (context) => GetAllChannelsCubit(
+                  getIt.get<ChannelRepoImpl>(),
+                )..getAllChannels()),
+      ],
       child: ScreenUtilInit(
         child: MaterialApp(
           onGenerateRoute: routes.onGenerateRoute,
           theme: ThemeData(scaffoldBackgroundColor: AppColors.primaryColor),
           debugShowCheckedModeBanner: false,
-          ),
+        ),
       ),
     );
   }

@@ -30,4 +30,6 @@ class AppIcons {
   static const String search = '$_iconPath/search.svg';
   static const String noData = '$_iconPath/no_data.svg';
   static const String back = '$_iconPath/back.svg';
+  static const String uploadIcon = '$_iconPath/arrow-up-tray.svg';
+  static const String settingsIcon = '$_iconPath/settings_black_24dp 1.svg';
 }

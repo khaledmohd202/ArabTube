@@ -3,13 +3,11 @@ import 'dart:math';
 import 'package:arabtube/features/channels/data/model/channel_model.dart';
 import 'package:arabtube/features/home/data/models/video.dart';
 
-
 class Constants {
-
-  static List<VideoModel> model=[];
-  static List<VideoModel> foundedItems=[];
-  static List<ChannelModel> subscribeModel=[];
-  static List<ChannelModel> foundedChannels=[];
+  static List<VideoModel> model = [];
+  static List<VideoModel> foundedItems = [];
+  static List<ChannelModel> subscribeModel = [];
+  static List<ChannelModel> foundedChannels = [];
   static String baseUrl = 'https://arabtubedemo1.runasp.net/api';
   static const String initialRoute = '/SplashPage';
   static const String onboardingRoute = '/OnboardingPage';
@@ -28,5 +26,7 @@ class Constants {
   static const String languageRoute = '/LanguagePage';
   static const String shortsRoute = '/ShortsPage';
   static const String liveStreamRoute = '/LiveStreamPage';
-  static String userID = Random().nextInt(900000+100000).toString();
+  static const String videoRoute = '/VideoPage';
+  static const String historyRoute = '/HistoryPage';
+  static const String watchedLaterRoute = '/WatchedLaterPage';
 }
