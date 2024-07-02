@@ -1,5 +1,7 @@
 import 'package:arabtube/core/utils/colors/app_colors.dart';
 import 'package:arabtube/core/utils/const/constants.dart';
+import 'package:arabtube/features/settings/presentation/widgets/settings_list_tile.dart';
+import 'package:arabtube/features/settings/presentation/widgets/title_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,29 +13,12 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Settings',
-          style: TextStyle(
-            color: AppColors.buttonColor,
-            fontSize: 24.0.sp,
-            fontWeight: FontWeight.bold,
-          ),
+        title: TitleAppBar(
+          title: 'Settings',
+          color: AppColors.buttonColor,
         ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 8.0.w),
-        //   child: BackButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     color: AppColors.whiteColor,
-        //     style: ButtonStyle(
-        //       overlayColor: WidgetStateProperty.all(AppColors.buttonColor),
-        //       iconSize: WidgetStateProperty.all(30.0.sp),
-        //     ),
-        //   ),
-        // ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -41,15 +26,8 @@ class SettingsPage extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                // Divider(
-                //   color: AppColors.whiteColor.withOpacity(0.5),
-                //   thickness: 1.0.sign,
-                //   endIndent: 8.dg,
-                //   indent: 8.dg,
-                //   height: 10,
-                // ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'Profile',
                   icon: Icons.person,
                   onTap: () {
@@ -57,7 +35,7 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'Language',
                   icon: Icons.language,
                   onTap: () {
@@ -65,7 +43,7 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'History',
                   icon: Icons.history,
                   onTap: () {
@@ -76,7 +54,7 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'Watched Later',
                   icon: Icons.watch_later_outlined,
                   onTap: () {
@@ -87,7 +65,7 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'Terms & Conditions',
                   icon: Icons.rule,
                   onTap: () {
@@ -97,7 +75,7 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'About',
                   icon: Icons.info,
                   onTap: () {
@@ -105,7 +83,7 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                CustomListTile(
+                SettingsListTile(
                   title: 'Logout',
                   icon: Icons.logout,
                   onTap: () {
@@ -117,57 +95,6 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomListTile extends StatelessWidget {
-  const CustomListTile({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.onTap,
-  });
-  final String title;
-  final IconData icon;
-  final void Function() onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        height: 40.h,
-        width: 40.w,
-        decoration: BoxDecoration(
-          color: AppColors.buttonColor,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          icon,
-          color: AppColors.whiteColor,
-        ),
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-          fontSize: 18.sp,
-          color: AppColors.whiteColor,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      trailing: Container(
-        height: 30.h,
-        width: 30.w,
-        decoration: const BoxDecoration(
-          // color: AppColors.buttonColor,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          Icons.arrow_forward_ios,
-          color: AppColors.whiteColor,
-        ),
-      ),
-      onTap: onTap,
     );
   }
 }

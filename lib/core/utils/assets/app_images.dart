@@ -18,4 +18,5 @@ class AppImages {
   static String homeImage = '$_imagePath/Rectangle 964.png';
   static String arabtubeImage = '$_imagePath/arabtube_logo.png';
   static String liveStreamImage = '$_imagePath/Live Streaming.png';
+  static String watchedVideoImage = '$_imagePath/Subtract.png';
 }

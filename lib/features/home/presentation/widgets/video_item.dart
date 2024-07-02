@@ -64,70 +64,73 @@ class VideoItem extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 20.h,
+          height: MediaQuery.of(context).size.height * 0.02,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  MediaQuery.of(context).size.height * 0.06,
-                ),
-                child: CachedNetworkImage(
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[400]!,
-                    highlightColor: Colors.grey[200]!,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.grey, shape: BoxShape.circle),
-                    ),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  imageUrl:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWr7tF8hS1xTA65YP22gtYCtnLOjVJi0yALjeXzYDtL0h7Mn43QCdnnWrfPpDWVofltT0&usqp=CAU",
-                  fit: BoxFit.fill,
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.height * 0.06,
-                ),
-              ),
-              SizedBox(
-                width: 20.w,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      instance.title!,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * .016,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      "${instance.channelTitle} . ${instance.views} views . 5 min ago",
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * .016,
-                        color: const Color(0xff727272),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 20.w,
-              ),
-              SvgPicture.asset(
-                AppIcons.menu,
-                width: MediaQuery.of(context).size.height * .005,
-              ),
-            ],
-          ),
-        )
+        videoInfo(context),
       ],
+    );
+  }
+
+  Widget videoInfo(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(
+              MediaQuery.of(context).size.height * 0.06,
+            ),
+            child: CachedNetworkImage(
+              placeholder: (context, url) => Shimmer.fromColors(
+                baseColor: Colors.grey[400]!,
+                highlightColor: Colors.grey[200]!,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.grey, shape: BoxShape.circle),
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageUrl: Constants.imageUrl,
+              fit: BoxFit.fill,
+              height: MediaQuery.of(context).size.height * 0.06,
+              width: MediaQuery.of(context).size.height * 0.06,
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.02,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  instance.title!,
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height * .016,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  "${instance.channelTitle} . ${instance.views} views . ${DateTime.monday} days ago",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height * .016,
+                    color: const Color(0xff727272),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 20.w,
+          ),
+          SvgPicture.asset(
+            AppIcons.menu,
+            width: MediaQuery.of(context).size.height * .005,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:arabtube/core/utils/assets/app_icons.dart';
+import 'package:arabtube/core/utils/assets/app_images.dart';
 import 'package:arabtube/core/utils/colors/app_colors.dart';
 import 'package:arabtube/features/login/presentation/widgets/custom_text_form_field.dart';
 import 'package:arabtube/features/onboarding/presentation/widgets/custom_text_button.dart';
+import 'package:arabtube/features/settings/presentation/widgets/title_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,29 +15,13 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Edit Profile',
-          style: TextStyle(
-            color: AppColors.whiteColor,
-            fontSize: 23.0.sp,
-            fontWeight: FontWeight.bold,
-          ),
+        title: TitleAppBar(
+          title: 'Edit Profile',
+          color: AppColors.whiteColor,
         ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 8.0.w),
-          child: BackButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            color: AppColors.whiteColor,
-            style: ButtonStyle(
-              overlayColor: WidgetStateProperty.all(AppColors.buttonColor),
-              iconSize: WidgetStateProperty.all(30.0.sp),
-            ),
-          ),
-        ),
+        leading: leadingAppBar(context),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -47,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                   padding: EdgeInsets.only(top: 20.0.h),
                   child: CircleAvatar(
                     radius: 55.0.r,
-                    backgroundImage: AssetImage('assets/images/khaled.jpg'),
+                    backgroundImage: AssetImage(AppImages.khaledImage),
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.09),
@@ -108,4 +94,21 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+
+  Padding leadingAppBar(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 8.0.w),
+      child: BackButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        color: AppColors.whiteColor,
+        style: ButtonStyle(
+          overlayColor: WidgetStateProperty.all(AppColors.buttonColor),
+          iconSize: WidgetStateProperty.all(30.0.sp),
+        ),
+      ),
+    );
+  }
 }
+

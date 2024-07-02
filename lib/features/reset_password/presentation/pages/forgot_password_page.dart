@@ -63,36 +63,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.08,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: TextFormField(
-                    onChanged: (value) {},
-                    onTap: () {},
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: 'Enter Your Email',
-                      hintStyle: TextStyle(
-                        color: AppColors.accentColor,
-                      ),
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.only(left: 25.0.w, right: 20.0.w),
-                        child: SvgPicture.asset(
-                          AppIcons.emailIcon,
-                          height: 20.h,
-                          width: 20.w,
-                        ),
-                      ),
-                      border: borderDecoration,
-                      focusedBorder: borderDecoration,
-                      disabledBorder: borderDecoration,
-                      enabledBorder: borderDecoration,
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical: 15.h,
-                        horizontal: 20.w,
-                      ),
-                    ),
-                  ),
-                ),
+                forgotPasswordTextField(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.06,
                 ),
@@ -133,6 +104,39 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding forgotPasswordTextField() {
+    return Padding(
+      padding: const EdgeInsets.all(0),
+      child: TextFormField(
+        onChanged: (value) {},
+        onTap: () {},
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          hintText: 'Enter Your Email',
+          hintStyle: TextStyle(
+            color: AppColors.accentColor,
+          ),
+          prefixIcon: Padding(
+            padding: EdgeInsets.only(left: 25.0.w, right: 20.0.w),
+            child: SvgPicture.asset(
+              AppIcons.emailIcon,
+              height: 20.h,
+              width: 20.w,
+            ),
+          ),
+          border: borderDecoration,
+          focusedBorder: borderDecoration,
+          disabledBorder: borderDecoration,
+          enabledBorder: borderDecoration,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 15.h,
+            horizontal: 20.w,
           ),
         ),
       ),

@@ -1,11 +1,9 @@
 import 'package:arabtube/core/utils/const/constants.dart';
-
+import 'package:arabtube/features/registration/presentation/widgets/register_header.dart';
 import '../../../../core/utils/assets/app_icons.dart';
 import '../../../../core/utils/colors/app_colors.dart';
 import '../../../login/presentation/widgets/custom_text_form_field.dart';
 import '../../../onboarding/presentation/widgets/custom_text_button.dart';
-import '../widgets/custom_drop_down.dart';
-import '../widgets/custom_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,32 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 40.h,
-                      width: 40.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.r),
-                        color: AppColors.buttonColor,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 5.w, bottom: 3.h),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          iconSize: 25.sp,
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                const RegisterHeader(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
@@ -92,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
                 CustomTextFormField(
                   hintText: 'Full Name',
@@ -106,37 +79,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.04,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomPicker(
-                      hintText: '20/2/2002',
-                      text: 'Date of Birth',
-                      controller: _dateController,
-                      onTap: () {
-                        _selectDate(context);
-                      },
-                      suffixIcon: Icon(
-                        Icons.calendar_month,
-                        color: AppColors.whiteColor.withOpacity(0.5),
-                        size: 24.sp,
-                      ),
-                    ),
-                    CustomDropDown(
-                      value: dropDownValue,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropDownValue = newValue!;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                ),
                 CustomTextFormField(
-                  hintText: 'Enter Your Parent Email',
+                  hintText: 'Enter Your Email',
                   svgIcon: AppIcons.emailIcon,
                   horizontalPadding: 0,
                   contentPadding: EdgeInsets.symmetric(
@@ -168,50 +112,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     vertical: 13.h,
                   ),
                 ),
-                Row(
-                  children: [
-                    Checkbox(
-                      side: BorderSide(
-                        color: AppColors.whiteColor.withOpacity(0.5),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.r),
-                      ),
-                      value: checkBoxValue,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          checkBoxValue = value!;
-                        });
-                      },
-                      activeColor: AppColors.buttonColor,
-                    ),
-                    Text(
-                      'By clicking on it, you agree to our',
-                      style: TextStyle(
-                        color: AppColors.whiteColor.withOpacity(0.5),
-                        fontSize: 10.sp,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Terms & Conditions',
-                        style: TextStyle(
-                          color: AppColors.buttonColor,
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                termsAndConditionsAcceptance(),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
                 CustomTextButton(
                   text: 'Next',
                   onPressed: () {
-                    Navigator.pushNamed(context, Constants.emailVerificationRoute);
-
+                    Navigator.pushNamed(
+                        context, Constants.emailVerificationRoute);
                   },
                   foregroundColor: AppColors.whiteColor,
                   backgroundColor: AppColors.buttonColor,
@@ -249,4 +158,44 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
+  Widget termsAndConditionsAcceptance() {
+    return Row(
+      children: [
+        Checkbox(
+          side: BorderSide(
+            color: AppColors.whiteColor.withOpacity(0.5),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.r),
+          ),
+          value: checkBoxValue,
+          onChanged: (bool? value) {
+            setState(() {
+              checkBoxValue = value!;
+            });
+          },
+          activeColor: AppColors.buttonColor,
+        ),
+        Text(
+          'By clicking on it, you agree to our',
+          style: TextStyle(
+            color: AppColors.whiteColor.withOpacity(0.5),
+            fontSize: 10.sp,
+          ),
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            'Terms & Conditions',
+            style: TextStyle(
+              color: AppColors.buttonColor,
+              fontSize: 10.sp,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
+

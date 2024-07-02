@@ -1,11 +1,9 @@
 import 'dart:math';
-
 import 'package:arabtube/core/utils/assets/app_images.dart';
 import 'package:arabtube/core/utils/colors/app_colors.dart';
+import 'package:arabtube/features/live_stream/presentation/pages/live_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zego_uikit_prebuilt_live_streaming/zego_uikit_prebuilt_live_streaming.dart';
 
 final String userID = Random().nextInt(900000 + 100000).toString();
 
@@ -98,52 +96,56 @@ class LiveStreamPage extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      style: buttonStyle,
-                      child: Text(
-                        'Start a Live',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onPressed: () => jumpToLivePage(
-                        context,
-                        liveID: liveIDController.text,
-                        isHost: true,
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.016,
-                    ),
-                    ElevatedButton(
-                      style: buttonStyle,
-                      child: Text(
-                        'Join a Live',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onPressed: () => jumpToLivePage(
-                        context,
-                        liveID: liveIDController.text,
-                        isHost: false,
-                      ),
-                    )
-                  ],
-                ),
+                chooseVideoType(buttonStyle, context),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Row chooseVideoType(ButtonStyle buttonStyle, BuildContext context) {
+    return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    style: buttonStyle,
+                    child: Text(
+                      'Start a Live',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () => jumpToLivePage(
+                      context,
+                      liveID: liveIDController.text,
+                      isHost: true,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.016,
+                  ),
+                  ElevatedButton(
+                    style: buttonStyle,
+                    child: Text(
+                      'Join a Live',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () => jumpToLivePage(
+                      context,
+                      liveID: liveIDController.text,
+                      isHost: false,
+                    ),
+                  )
+                ],
+              );
   }
 }
 
@@ -163,36 +165,3 @@ jumpToLivePage(
   );
 }
 
-class LivePage extends StatelessWidget {
-  final String liveID;
-  final bool isHost;
-
-  LivePage({
-    super.key,
-    required this.liveID,
-    this.isHost = false,
-  });
-
-  // Read AppID and AppSign from .env file
-  // Make sure you replace with your own
-  final int appID = int.parse(dotenv.get('ZEGO_APP_ID'));
-  final String appSign = dotenv.get('ZEGO_APP_SIGN');
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: ZegoUIKitPrebuiltLiveStreaming(
-        appID: appID,
-        appSign: appSign,
-        userID: userID,
-        userName: 'user_$userID',
-        liveID: liveID,
-        config: isHost
-            ? ZegoUIKitPrebuiltLiveStreamingConfig.host()
-            : ZegoUIKitPrebuiltLiveStreamingConfig.audience()
-          ..audioVideoView.showAvatarInAudioMode = true
-          ..audioVideoView.showSoundWavesInAudioMode = true,
-      ),
-    );
-  }
-}

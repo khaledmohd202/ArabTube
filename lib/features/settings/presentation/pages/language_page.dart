@@ -1,4 +1,6 @@
 import 'package:arabtube/core/utils/colors/app_colors.dart';
+import 'package:arabtube/features/settings/presentation/widgets/leading_app_bar_icon.dart';
+import 'package:arabtube/features/settings/presentation/widgets/title_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,29 +12,13 @@ class LanguagePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Language',
-          style: TextStyle(
-            color: AppColors.whiteColor,
-            fontSize: 23.0.sp,
-            fontWeight: FontWeight.bold,
-          ),
+        title: TitleAppBar(
+          title: 'Language',
+          color: AppColors.whiteColor,
         ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 8.0.w),
-          child: BackButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            color: AppColors.whiteColor,
-            style: ButtonStyle(
-              overlayColor: WidgetStateProperty.all(AppColors.buttonColor),
-              iconSize: WidgetStateProperty.all(30.0.sp),
-            ),
-          ),
-        ),
+        leading: const LeadingAppBarIcon(),
       ),
       body: SingleChildScrollView(
         child: Padding(

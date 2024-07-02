@@ -1,4 +1,5 @@
 import 'package:arabtube/core/utils/const/constants.dart';
+import 'package:arabtube/features/reset_password/presentation/widgets/reset_password_text_field.dart';
 
 import '../../../../core/utils/assets/app_images.dart';
 import '../../../../core/utils/colors/app_colors.dart';
@@ -65,7 +66,7 @@ class ResetPasswordPage extends StatelessWidget {
                     color: AppColors.greyColor,
                   ),
                 ),
-                ResetPasswordTextForm(
+                ResetPasswordTextField(
                   borderDecoration: borderDecoration,
                   hintText: 'Repeat Password',
                 ),
@@ -79,7 +80,7 @@ class ResetPasswordPage extends StatelessWidget {
                     color: AppColors.greyColor,
                   ),
                 ),
-                ResetPasswordTextForm(
+                ResetPasswordTextField(
                   borderDecoration: borderDecoration,
                   hintText: 'Repeat Password',
                 ),
@@ -99,62 +100,6 @@ class ResetPasswordPage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ResetPasswordTextForm extends StatelessWidget {
-  const ResetPasswordTextForm({
-    super.key,
-    required this.borderDecoration,
-    required this.hintText,
-  });
-
-  final InputBorder? borderDecoration;
-  final String? hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      onTap: () {},
-      onSaved: (newValue) {},
-      // validator: (value) {},
-      decoration: InputDecoration(
-        // 1- hint text
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: AppColors.accentColor,
-          fontSize: 15.sp,
-        ),
-        contentPadding: EdgeInsets.symmetric(
-          vertical: 15.h,
-          horizontal: 20.w,
-        ),
-        border: borderDecoration,
-        focusedBorder: borderDecoration,
-        enabledBorder: borderDecoration,
-        disabledBorder: borderDecoration,
-        errorBorder: borderDecoration!.copyWith(
-          borderSide: BorderSide(
-            color: AppColors.buttonColor,
-          ),
-        ),
-        focusedErrorBorder: borderDecoration!.copyWith(
-          borderSide: BorderSide(
-            color: AppColors.buttonColor,
-          ),
-        ),
-        suffixIcon: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 10.h,
-            horizontal: 15.w,
-          ),
-          child: Icon(
-            Icons.visibility_off,
-            color: AppColors.accentColor,
           ),
         ),
       ),

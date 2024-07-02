@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:arabtube/features/channels/data/model/channel_model.dart';
 import 'package:arabtube/features/home/data/models/video.dart';
 
@@ -9,6 +7,8 @@ class Constants {
   static List<ChannelModel> subscribeModel = [];
   static List<ChannelModel> foundedChannels = [];
   static String baseUrl = 'https://arabtubedemo1.runasp.net/api';
+  static const String imageUrl =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWr7tF8hS1xTA65YP22gtYCtnLOjVJi0yALjeXzYDtL0h7Mn43QCdnnWrfPpDWVofltT0&usqp=CAU";
   static const String initialRoute = '/SplashPage';
   static const String onboardingRoute = '/OnboardingPage';
   static const String loginRoute = '/LoginPage';

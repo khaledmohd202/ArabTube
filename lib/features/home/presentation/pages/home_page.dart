@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:arabtube/core/utils/assets/app_icons.dart';
 import 'package:arabtube/core/utils/colors/app_colors.dart';
 import 'package:arabtube/core/utils/const/constants.dart';
@@ -12,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/utils/shared_widgets/default_text_form_field.dart';
@@ -57,95 +54,47 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           children: [
             SizedBox(height: 20.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                      MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    child: CachedNetworkImage(
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.grey[400]!,
-                        highlightColor: Colors.grey[200]!,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.grey, shape: BoxShape.circle),
-                        ),
-                      ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                      imageUrl:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWr7tF8hS1xTA65YP22gtYCtnLOjVJi0yALjeXzYDtL0h7Mn43QCdnnWrfPpDWVofltT0&usqp=CAU",
-                      fit: BoxFit.fill,
-                      height: MediaQuery.of(context).size.height * 0.05,
-                      width: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Expanded(
-                    child: DefaultTextFormField(
-                      textInputType: TextInputType.text,
-                      style: const TextStyle(color: Colors.white),
-                      borderSideEnabledColor: Colors.white,
-                      hintText: "Search",
-                      hasBorder: true,
-                      onChange: (value) {
-                        runFilter(value);
-                      },
-                      controller: searchController,
-                      borderRadius: 14.r,
-                      fillColor: Colors.transparent,
-                      borderSideWidth: 1,
-                      borderSideColor: Colors.white,
-                      prefixIcon: SvgPicture.asset(
-                        AppIcons.search,
-                        fit: BoxFit.scaleDown,
-                        color: const Color(0xffDDDDFF),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const NotificationView(),
-                        ),
-                      );
-                    },
-                    child: CircleAvatar(
-                      radius: MediaQuery.of(context).size.height * .025,
-                      backgroundColor: Colors.white,
-                      child: SvgPicture.asset(
-                        AppIcons.notificationIcon,
-                        width: MediaQuery.of(context).size.height * .025,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            // SearchBar Widget
+            searchBar(context),
             SizedBox(height: 20.h),
             BlocBuilder<GetAllVideosCubit, GetAllVideosState>(
-                builder: (context, state) {
-              if (state is UserGetAllVideosSuccessState) {
-                return Expanded(
-                  child: Constants.foundedItems.isNotEmpty
-                      ? ListView.separated(
-                          itemCount: Constants.foundedItems.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return VideoItem(
-                              instance: Constants.foundedItems[index],
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(height: 20.h);
-                          },
-                        )
-                      : Column(
+              builder: (context, state) {
+                if (state is UserGetAllVideosSuccessState) {
+                  return Expanded(
+                    child: Constants.foundedItems.isNotEmpty
+                        ? videoLoaded()
+                        : videoNotFound(context),
+                  );
+                } else {
+                  return videoLoading();
+                }
+              },
+            ),
+            SizedBox(height: 20.h),
+          ],
+        ),
+        floatingActionButton: floatingActionButton(context),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      ),
+    );
+  }
+
+  Widget videoLoading() {
+    return Expanded(
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              color: Color(0xffFF0000),
+                            ),
+                          ],
+                        ),),);
+  }
+
+  Widget videoNotFound(BuildContext context) {
+    return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(
@@ -153,8 +102,8 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 SvgPicture.asset(
                                   AppIcons.noData,
-                                  width:
-                                      MediaQuery.of(context).size.height * .15,
+                                  width: MediaQuery.of(context).size.height *
+                                      .15,
                                 ),
                               ],
                             ),
@@ -169,32 +118,99 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )
                           ],
-                        ),
-                );
-              } else {
-                return Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircularProgressIndicator(
-                              color: Color(0xffFF0000),
-                            ),
-                          ],
-                        )));
-              }
-            }),
-            SizedBox(height: 20.h),
-          ],
-        ),
-        floatingActionButton: floatingActionButton(context),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      ),
-    );
+                        );
   }
 
-  SpeedDial floatingActionButton(BuildContext context) {
+  Widget videoLoaded() {
+    return ListView.separated(
+                          itemCount: Constants.foundedItems.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return VideoItem(
+                              instance: Constants.foundedItems[index],
+                            );
+                          },
+                          separatorBuilder:
+                              (BuildContext context, int index) {
+                            return SizedBox(height: 20.h);
+                          },
+                        );
+  }
+
+  Widget searchBar(BuildContext context) {
+    return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  child: CachedNetworkImage(
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[400]!,
+                      highlightColor: Colors.grey[200]!,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.grey, shape: BoxShape.circle),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    imageUrl:
+                       Constants.imageUrl,
+                    fit: BoxFit.fill,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                ),
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: DefaultTextFormField(
+                    textInputType: TextInputType.text,
+                    style: const TextStyle(color: Colors.white),
+                    borderSideEnabledColor: Colors.white,
+                    hintText: "Search",
+                    hasBorder: true,
+                    onChange: (value) {
+                      runFilter(value);
+                    },
+                    controller: searchController,
+                    borderRadius: 14.r,
+                    fillColor: Colors.transparent,
+                    borderSideWidth: 1,
+                    borderSideColor: Colors.white,
+                    prefixIcon: SvgPicture.asset(
+                      AppIcons.search,
+                      fit: BoxFit.scaleDown,
+                      color: const Color(0xffDDDDFF),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10.w),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationView(),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: MediaQuery.of(context).size.height * .025,
+                    backgroundColor: Colors.white,
+                    child: SvgPicture.asset(
+                      AppIcons.notificationIcon,
+                      width: MediaQuery.of(context).size.height * .025,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+  }
+
+  Widget floatingActionButton(BuildContext context) {
     return SpeedDial(
       buttonSize: Size(
         50.w,
@@ -238,14 +254,7 @@ class _HomePageState extends State<HomePage> {
         customSpeedDialChild(
           icon: AppIcons.uploadIcon,
           label: "Upload Video",
-          onTap: () {
-            // showDialog(
-            //   context: context,
-            //   builder: (context) {
-            //     return 
-            //   },
-            // );
-          },
+          onTap: () {},
         ),
         customSpeedDialChild(
           icon: AppIcons.personIcon,
@@ -256,8 +265,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  SpeedDialChild customSpeedDialChild(
-      {required String icon, String? label, void Function()? onTap}) {
+  SpeedDialChild customSpeedDialChild({
+        required String icon, String? label, void Function()? onTap,
+      }) {
     return SpeedDialChild(
       child: SvgPicture.asset(
         icon,

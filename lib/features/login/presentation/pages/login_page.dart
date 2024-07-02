@@ -155,29 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.002,
-                      width: MediaQuery.of(context).size.width * 0.37,
-                      color: AppColors.greyColor.withOpacity(0.5),
-                    ),
-                    Text(
-                      'OR',
-                      style: TextStyle(
-                        color: AppColors.whiteColor.withOpacity(0.5),
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.002,
-                      width: MediaQuery.of(context).size.width * 0.37,
-                      color: AppColors.greyColor.withOpacity(0.5),
-                    ),
-                  ],
-                ),
+                customDivider(context),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -197,6 +175,32 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Row customDivider(BuildContext context) {
+    return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.002,
+                    width: MediaQuery.of(context).size.width * 0.37,
+                    color: AppColors.greyColor.withOpacity(0.5),
+                  ),
+                  Text(
+                    'OR',
+                    style: TextStyle(
+                      color: AppColors.whiteColor.withOpacity(0.5),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.002,
+                    width: MediaQuery.of(context).size.width * 0.37,
+                    color: AppColors.greyColor.withOpacity(0.5),
+                  ),
+                ],
+              );
+  }
+
   InkWell loginWithSocialMedia(void Function()? onTap, String svgIcon) {
     return InkWell(
       highlightColor: AppColors.primaryColor,
@@ -211,76 +215,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-// Future<dynamic> modalBottomSheet(BuildContext context) {
-//   return showModalBottomSheet(
-//     // clipBehavior: Clip.hardEdge,
-//     context: context,
-//     builder: (context) {
-//       return BackdropFilter(
-//         // blendMode: BlendMode.lighten,
-//         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-//         child: Container(
-//           height: MediaQuery.of(context).size.height / 2.6,
-//           width: MediaQuery.of(context).size.width,
-//           decoration: BoxDecoration(
-//             color: AppColors.primaryColor,
-//             borderRadius: const BorderRadius.only(
-//               topLeft: Radius.circular(30),
-//               topRight: Radius.circular(30),
-//             ),
-//           ),
-//           child: Padding(
-//             padding: const EdgeInsets.symmetric(
-//               horizontal: 0,
-//               vertical: 20,
-//             ),
-//             child: Column(
-//               mainAxisSize: MainAxisSize.max,
-//               children: [
-//                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-//                 Text(
-//                   AppStrings.getStartedString,
-//                   style: TextStyle(
-//                     fontSize: 36.sp,
-//                     fontWeight: FontWeight.bold,
-//                     color: AppColors.whiteColor,
-//                   ),
-//                 ),
-//                 Text(
-//                   AppStrings.getStartedDescriptionString,
-//                   style: TextStyle(
-//                     color: AppColors.whiteColor.withOpacity(0.5),
-//                     fontSize: 12.sp,
-//                   ),
-//                 ),
-//                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-//                 CustomTextButton(
-//                   onPressed: () {
-//                     // Navigator.pushNamed(context, Routes.parentRegisterRoute);
-//                   },
-//                   backgroundColor: AppColors.buttonColor,
-//                   foregroundColor: AppColors.whiteColor,
-//                   text: 'Register as Parents',
-//                   width: MediaQuery.of(context).size.width * 0.8,
-//                   height: MediaQuery.of(context).size.height * 0.065,
-//                 ),
-//                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-//                 CustomTextButton(
-//                   onPressed: () {
-//                     Navigator.pushNamed(context, Routes.registerRoute);
-//                   },
-//                   backgroundColor: AppColors.buttonColor,
-//                   foregroundColor: AppColors.whiteColor,
-//                   text: 'Register as Child',
-//                   width: MediaQuery.of(context).size.width * 0.8,
-//                   height: MediaQuery.of(context).size.height * 0.065,
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       );
-//     },
-//   );
-// }

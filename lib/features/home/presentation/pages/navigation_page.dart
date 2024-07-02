@@ -5,7 +5,6 @@ import '../../../../core/utils/assets/app_icons.dart';
 import '../../../../core/utils/colors/app_colors.dart';
 import '../../../channels/presentation/views/channel_view.dart';
 import 'home_page.dart';
-import '../../../shorts/presentation/pages/shorts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

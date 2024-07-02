@@ -1,12 +1,6 @@
-import 'package:arabtube/core/utils/assets/app_icons.dart';
-import 'package:arabtube/core/utils/colors/app_colors.dart';
-// import 'package:chewie/chewie.dart';
+import 'package:arabtube/features/video/presentation/widgets/video_view_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:flutter_svg/svg.dart';
-// import 'package:video_player/video_player.dart';
+import 'package:flutter/services.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({super.key});
@@ -16,145 +10,13 @@ class VideoPage extends StatefulWidget {
 }
 
 class _VideoPageState extends State<VideoPage> {
-  ScrollController? _scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-  }
-
-  @override
-  void dispose() {
-    _scrollController?.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: AppColors.primaryColor,
-        child: CustomScrollView(
-          controller: _scrollController,
-          shrinkWrap: true,
-          slivers: [
-            SliverToBoxAdapter(
-              child: Consumer(
-                builder: (context, watch, _) {
-                  // final selectedVideo = watch(selectedVideoProvider).state;
-                  return const SafeArea(
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            // Image.network(
-                            //     selectedVideo!.thumbnailUrl,
-                            //     height: 220.0,
-                            //     width: double.infinity,
-                            //     fit: BoxFit.cover,
-                            //   ),
-                            //   IconButton(
-                            //     iconSize: 30.0,
-                            //     icon: const Icon(Icons.keyboard_arrow_down),
-                            //     onPressed: () => context
-                            //         .read(miniPlayerControllerProvider)
-                            //         .state
-                            //         .animateToHeight(state: PanelState.MIN),
-                            //   ),
-                          ],
-                        ),
-                        // VideoInfo(video: selectedVideo),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  // return Column(
-                  //   children: [
-                  //     // VideoInfo(video: selectedVideo),
-                  //     // VideoDescription(video: selectedVideo),
-                  //     // VideoMeta(video: selectedVideo),
-                  //     // VideoActions(video: selectedVideo),
-                  //     // VideoComments(video: selectedVideo),
-                  //   ],
-                  // );
-                  // return VideoCard(
-                  //   video: video,
-                  //   hasPadding: true,
-                  //   onTap: () => _scrollController!.animateTo(
-                  //     0,
-                  //     duration: const Duration(milliseconds: 200),
-                  //     curve: Curves.easeIn,
-                  //   ),
-                  // );
-                },
-                childCount: 10,
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: SpeedDial(
-        icon: Icons.add,
-        activeIcon: Icons.close,
-        backgroundColor: AppColors.buttonColor,
-        children: [
-          SpeedDialChild(
-            child: const Icon(Icons.thumb_up),
-            label: 'Like',
-            onTap: () {
-              // Handle like action
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.thumb_down),
-            label: 'Dislike',
-            onTap: () {
-              // Handle dislike action
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.share),
-            label: 'Share',
-            onTap: () {
-              // Handle share action
-            },
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: NavigationBar(
-        destinations: [
-          IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(
-              AppIcons.homeIcon,
-              width: 25.sp,
-              height: 25.sp,
-            ),
-          ),
-          SvgPicture.asset(
-            AppIcons.homeIcon,
-            width: 25.0,
-          ),
-          NavigationDestination(
-            icon: IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                AppIcons.homeIcon,
-                width: 25.sp,
-                height: 25.sp,
-              ),
-            ),
-            label: 'Live Stream',
-          ),
-        ],
-      ),
+    const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.transparent);
+    return const Scaffold(
+      body: VideoViewBody(),
     );
   }
 }

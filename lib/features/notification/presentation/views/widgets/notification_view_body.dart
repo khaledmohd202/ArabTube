@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../core/utils/colors/app_colors.dart';
 import '../../view_models/get_notifications/get_notifications_cubit.dart';
 import 'notification_item.dart';
 
